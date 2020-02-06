@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:17:26 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/01/23 13:30:10 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:21:16 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main()
 
     int resultat;
 
-    resultat = multiplication(2, 3, 5);
+    resultat = multiplication(3, 3, 5, 45);
     printf("%d", resultat);
     
     return (0);
