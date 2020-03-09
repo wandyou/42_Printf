@@ -1,18 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_include.h                                   :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/09 11:58:02 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/03/09 22:43:02 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/03/09 22:43:03 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_INCLUDE_H
-# define PRINTF_INCLUDE_H
-
-int ft_printf(const char *parse);
-
-#endif

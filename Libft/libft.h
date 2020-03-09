@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 15:50:10 by nlafarge          #+#    #+#             */
-/*   Updated: 2019/11/22 15:17:04 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/03/09 22:49:34 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
+void			ft_putstr(char *str);
 
 #endif

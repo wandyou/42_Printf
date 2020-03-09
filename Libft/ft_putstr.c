@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_include.h                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 12:54:16 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/09 13:05:21 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/03/09 22:46:33 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/03/09 22:50:44 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_INCLUDE_H
-# define MAIN_INCLUDE_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdarg.h>
-# include <unistd.h>
-int ft_printf(const char *parse);
+void ft_putstr(char *str)
+{
+  int len;
 
-#endif
+  len = ft_strlen(str);
+  write(1, str, len);
+}

@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   printf_include.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 11:17:26 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/09 23:17:33 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/03/09 23:11:29 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef PRINTF_INCLUDE_H
+# define PRINTF_INCLUDE_H
 
-void test(void)
+# include <stdio.h>
+# include <stdarg.h>
+# include <unistd.h>
+
+typedef struct s_maStructure s_maStructure;
+struct s_maStructure
 {
-  printf("AZERTY\n");
-}
+  char buff[500];
+};
 
-int test2(int num)
-{
-  return (num);
-}
+int ft_printf(const char *parse);
 
-int main(int ac, char const **argv)
-{
-  void (*ptrFunction) (void) = &test;
-  int (*ptrFunc) (int) = &test2;
-  int a = 0;
-  
-  ac = 0;
-  argv = NULL;
-
-  ptrFunction();
-  a = ptrFunc(45);
-
-  printf("%d\n", a);
-  return 0;
-}
+#endif
