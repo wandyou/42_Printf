@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:18:04 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/12 10:31:04 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:17:02 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // INITIALISATION DE LA STRUCTURE
 void  ft_init_struct(t_vars *vars)
 {
-  vars->parse_count = 0; // Index dans le str parse
+  vars->parse_count = 0; /* Index dans le str parse */
   vars->buff_count = 0; // Index dans le buffer
   vars->tot_chars = 0; // Compteur du nombre total de caractères affichés
 }
