@@ -6,14 +6,14 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:18:04 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/12 10:27:03 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:31:04 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
- // INITIALISATION DE LA STRUCTURE
-void ft_init_struct(t_vars *vars)
+// INITIALISATION DE LA STRUCTURE
+void  ft_init_struct(t_vars *vars)
 {
   vars->parse_count = 0; // Index dans le str parse
   vars->buff_count = 0; // Index dans le buffer
@@ -21,7 +21,7 @@ void ft_init_struct(t_vars *vars)
 }
 
 // IMPRIMER CE QU'IL Y A DANS LE BUFFER
-void ft_print_buff(t_vars *vars)
+void  ft_print_buff(t_vars *vars)
 {
   write(1, vars->buff, vars->buff_count); // Imprime le buffer
   vars->tot_chars += vars->buff_count; // Incrémente le nombre total de caractères
@@ -30,7 +30,7 @@ void ft_print_buff(t_vars *vars)
 }
 
 // AJOUTER UN CARACTERE AU BUFFER
-void ft_add_to_buff(t_vars *vars, char c)
+void  ft_add_to_buff(t_vars *vars, char c)
 {
   if (vars->buff_count == BUFFER_SIZE) // Si le buffer est plein avant d'ajouter un caractère
     ft_print_buff(vars); // Imprimer le buffer et le vider
@@ -39,7 +39,7 @@ void ft_add_to_buff(t_vars *vars, char c)
   vars->buff_count++; // Incrémenter l'index du buffer
 }
 
-int ft_printf(const char *parse, ...)
+int   ft_printf(const char *parse, ...)
 {
   t_vars vars;
   // va_list ap;
