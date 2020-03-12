@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/11 18:53:39 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:21:46 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_vars
   char  buff[500 + 1];
   int parse_count;
   int buff_count;
+  int tot_chars;
 } t_vars;
 
 int ft_printf(const char *parse, ...);
