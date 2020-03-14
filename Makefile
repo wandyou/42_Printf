@@ -6,7 +6,7 @@
 #    By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 16:36:10 by nlafarge          #+#    #+#              #
-#    Updated: 2020/03/11 19:29:51 by nlafarge         ###   ########.fr        #
+#    Updated: 2020/03/14 17:49:45 by nlafarge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ TOOLS = 	tools/ft_memset.c \
 all : $(NAME)
 
 $(NAME) : 
-					$(CC) $(CFLAGS) $(MAIN) $(SOURCES) $(TOOLS)
+					@$(CC) $(CFLAGS) $(MAIN) $(SOURCES) $(TOOLS)
 
 clean : 
-					$(shell rm a.out)
+					@$(shell rm a.out)
 
