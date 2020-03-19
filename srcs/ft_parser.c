@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 11:17:26 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/19 17:19:54 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/03/19 16:26:08 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/03/19 17:24:06 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int main(int argc, char **argv)
+int ft_is_form(char c)
 {
-  argv = NULL;
-  argc = 0;
-  int result;
+  return (c == '%');
+}
 
-  printf("\n\n[Démarrage du script]\n\n");
-  result = ft_printf("Je m'%%appelle Nathan et je suis particulièrement beau, et c'est vrai !", "ergerg");
+int ft_is_form_or_flag(char c)
+{
+  return (ft_is_form(c));
+}
+
+void  ft_parse(char *parse, va_list ap, t_vars *vars)
+{
+
+  ap = NULL;
+  vars->parse_count++;
+  if (parse[vars->parse_count] == '%')
+    ft_add_char_to_buff(vars, '%');
 }

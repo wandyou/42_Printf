@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:18:04 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/12 12:17:02 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/03/19 17:20:07 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,27 @@ void  ft_print_buff(t_vars *vars)
   ft_memset(vars->buff, 0, ft_strlen(vars->buff)); // Reset le buffer
 }
 
+// AJOUTER UN STRING AU BUFFER
+void  ft_add_str_to_buff(t_vars *vars, char *str)
+{
+  int i;
+
+  i = 0;
+  while (str[i])
+  {
+    if (vars->buff_count == BUFFER_SIZE) // Si le buffer est plein avant d'ajouter un caractère
+      ft_print_buff(vars); // Imprimer le buffer et le vider
+    vars->buff[vars->buff_count] = str[i]; // Ajouter le caractère au buffer
+    vars->buff_count++; // Incrémenter l'index du buffer
+    i++;
+  }
+}
+
 // AJOUTER UN CARACTERE AU BUFFER
-void  ft_add_to_buff(t_vars *vars, char c)
+void  ft_add_char_to_buff(t_vars *vars, char c)
 {
   if (vars->buff_count == BUFFER_SIZE) // Si le buffer est plein avant d'ajouter un caractère
     ft_print_buff(vars); // Imprimer le buffer et le vider
-
   vars->buff[vars->buff_count] = c; // Ajouter le caractère au buffer
   vars->buff_count++; // Incrémenter l'index du buffer
 }
@@ -42,22 +57,25 @@ void  ft_add_to_buff(t_vars *vars, char c)
 int   ft_printf(const char *parse, ...)
 {
   t_vars vars;
-  // va_list ap;
+  va_list ap;
 
   ft_init_struct(&vars);
-  // va_start(ap, parse);
-  
+  va_start(ap, parse); // On indique le point de démarrage de la liste de paramètres
+
   while (parse[vars.parse_count])
   {
     if (parse[vars.parse_count] == '%') // On rencontre un %
     {
-
+      if (parse[vars.parse_count + 1] == '\0')
+        break;
+      if (ft_is_form_or_flag(parse[vars.parse_count + 1]))
+        ft_parse((char *)parse, ap, &vars);
     }
     else
-      ft_add_to_buff(&vars, parse[vars.parse_count]); // Pas de % alors on imprime normalement
+      ft_add_char_to_buff(&vars, parse[vars.parse_count]); // Pas de % alors on imprime normalement
     vars.parse_count++; // Incrémente l'index du str parse
   }
-
+  va_end(ap); // On ferme la liste de paramètres
   ft_print_buff(&vars); // On imprime une dernière fois le buffer
   return (vars.tot_chars); // On retourne le nombre total de caractères imprimés
 }

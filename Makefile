@@ -6,7 +6,7 @@
 #    By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 16:36:10 by nlafarge          #+#    #+#              #
-#    Updated: 2020/03/14 17:49:45 by nlafarge         ###   ########.fr        #
+#    Updated: 2020/03/19 16:27:07 by nlafarge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ MAIN = 		main.c # Include main for tests
 
 HEADERS = headers/ft_printf.h # Header to include
 
-SOURCES = srcs/ft_printf.c # Sources to include
+SOURCES = srcs/ft_printf.c \
+					srcs/ft_parser.c
 
 TOOLS = 	tools/ft_memset.c \
 					tools/ft_strlen.c

@@ -6,11 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/03/13 09:08:38 by nlafarge         ###   ########.fr       */
-=======
-/*   Updated: 2020/03/12 10:21:46 by nlafarge         ###   ########.fr       */
->>>>>>> 81cf44d82903756052f165e225bcec755ce7096f
+/*   Updated: 2020/03/19 17:23:20 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +33,9 @@ typedef struct s_vars
 int ft_printf(const char *parse, ...);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *str);
+int ft_is_form_or_flag(char c);
+void  ft_add_str_to_buff(t_vars *vars, char *str);
+void  ft_add_char_to_buff(t_vars *vars, char c);
+void  ft_parse(char *parse, va_list ap, t_vars *vars);
 
 #endif
