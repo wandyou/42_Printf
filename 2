@@ -5,24 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/22 16:36:10 by nlafarge          #+#    #+#              #
-#    Updated: 2020/05/03 21:39:36 by nlafarge         ###   ########.fr        #
+#    Created: 2020/05/03 10:38:52 by nlafarge          #+#    #+#              #
+#    Updated: 2020/05/03 10:42:01 by nlafarge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc # Compilateur
-CFLAGS = -Wall -Wextra -Werror # Compilation flags
-
-NAME = a.out # Result file's name
-
-
-# INCLUDES ----------------------------
-
-MAIN				=	main.c
-
-MAINTEST		= main-test.c
-
-HEADERS			=	headers/ft_printf.h # Header to include
+NAME			= libftprintf.a
 
 SOURCE_DIR	= srcs
 
@@ -30,7 +18,8 @@ SOURCE			=	ft_printf.c
 
 PARSER			=	parser/ft_parser.c \
 							parser/ft_attributes.c \
-							parser/ft_conversions.c
+							parser/ft_conversions.c \
+							parser/ft_handle_precision.c
 
 LIB					=	lib/ft_memset.c \
 							lib/ft_strlen.c \
@@ -39,23 +28,38 @@ LIB					=	lib/ft_memset.c \
 BUFFER			= buffer/ft_buffer.c
 
 FILES			= ${SOURCE} ${PARSER} ${BUFFER}
-SOURCES			= $(addprefix ${SOURCE_DIR}/, ${FILES}) ${LIB}
+SRCS			= $(addprefix ${SOURCE_DIR}/, ${FILES}) ${LIB}
 
+OBJS			= ${SRCS:.c=.o}
 
-# MAGIC --------------------------------
+HEADER			= headers
 
-all : $(NAME)
+LIBFT 			= Libft
 
-$(NAME) : 
-					@$(CC) $(MAIN) $(SOURCES)
+CC				= gcc
+CFLAGS 			= -Wall -Wextra -Werror
+RM				= rm -f
 
-test :
-	$(CC) $(MAINTEST) $(SOURCES)
+all:			${NAME}
 
-clean : 
-					@$(shell rm a.out)
+$(NAME):		${OBJS}
+				@make -C $(LIBFT)
+				@cp libft/libft.a ./$(NAME)
+				@ar -rcs ${NAME} ${OBJS}
 
-re : clean all
+bonus:			${NAME}
 
-.PHONY : all clean re test
+%.o: %.c
+				@${CC} ${CFLAGS} -I ${HEADER} -o $@ -c $<
 
+clean:
+				@${RM} ${OBJS}
+				@make clean -C $(LIBFT)
+
+fclean:			clean
+				@${RM} ${NAME}
+				@make fclean -C $(LIBFT)
+
+re:				fclean all
+
+.PHONY: 		all fclean clean re

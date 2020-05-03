@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/19 17:23:20 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/03 21:39:44 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,35 @@
 typedef struct s_vars
 {
   char  buff[BUFFER_SIZE + 1];
-  int parse_count;
   int buff_count;
+  int parse_count;
   int tot_chars;
+  int zero;
+  int minus;
+  int width;
+  int precision;
+  int precision_width;
 } t_vars;
 
+/* DEBUG */
+void  ft_print_struct(t_vars *vars);
+
+/* PROD */
 int ft_printf(const char *parse, ...);
-void	*ft_memset(void *b, int c, size_t len);
-size_t	ft_strlen(const char *str);
-int ft_is_form_or_flag(char c);
+
+void  ft_print_buff(t_vars *vars);
 void  ft_add_str_to_buff(t_vars *vars, char *str);
 void  ft_add_char_to_buff(t_vars *vars, char c);
-void  ft_parse(char *parse, va_list ap, t_vars *vars);
+
+int  ft_parser(char *parse, va_list ap, t_vars *vars);
+void  ft_init_struct_parse(t_vars *vars);
+
+void handle_attributes_zero(t_vars *vars);
+
+int is_conversion(char c);
+
+void	*ft_memset(void *b, int c, size_t len);
+size_t	ft_strlen(const char *str);
+int		ft_simple_atoi(char *parse, int *parse_count);
 
 #endif
