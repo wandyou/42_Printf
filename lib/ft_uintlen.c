@@ -1,46 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_hex.c                                      :+:      :+:    :+:   */
+/*   ft_uintlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/15 01:47:27 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 13:50:30 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/15 13:13:55 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/15 13:14:13 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-char	*ft_itoa_hex(uintmax_t num, char *hex)
-{
-	char	*str;
-	int		num_len;
-	int		hex_len;
-
-  num_len = ft_intlen_hex(num, hex);
-	hex_len = ft_strlen(hex);
-	if (!(str = ft_calloc((num_len + 1), sizeof(char))))
-		return (NULL);
-	str[num_len] = '\0';
-	while (num_len)
-	{
-		str[--num_len] = hex[num % hex_len];
-		num = num / hex_len;
-	}
-	return (str);
-}
-
-size_t	ft_intlen_hex(uintmax_t num, char *hex)
+size_t	ft_uintlen(uintmax_t num)
 {
 	size_t		len;
-	uintmax_t	hex_len;
 
 	len = 1;
-	hex_len = ft_strlen(hex);
-	while (num >= hex_len)
+	while (num >= 10)
 	{
-		num = num / hex_len;
+		num = num / 10;
 		len++;
 	}
 	return (len);

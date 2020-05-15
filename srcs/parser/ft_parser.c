@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:26:08 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 03:05:21 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/15 15:24:47 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int  ft_parser(char *parse, va_list ap, t_vars *vars)
     vars->zero = 0;
   vars->conversion = parse[vars->parse_count];
   
-  ft_handlers(parse, ap, vars);
+  ft_handlers(ap, vars);
 
   //ft_print_struct(vars);
 

@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 03:13:17 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/15 15:01:56 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,21 @@ char	*ft_itoa_hex(uintmax_t var, char *base);
 char	*ft_num_precision(char *str, t_vars *vars);
 char	*ft_strdup(const char *s1);
 size_t		ft_intlen(intmax_t nb);
+char	*ft_simple_uitoa(uintmax_t num);
+size_t	ft_uintlen(uintmax_t num);
+size_t	ft_intlen_hex(uintmax_t n, char *base);
 
-void ft_handlers(char *parse, va_list ap, t_vars *vars);
+void ft_handlers(va_list ap, t_vars *vars);
 char *ft_handle_padding(t_vars *vars);
 void ft_handle_join(char *str, char *space, t_vars *vars);
 void handle_attributes_zero(t_vars *vars);
+void	ft_handle_sign(t_vars *vars);
 
 void ft_converter_c(va_list ap, t_vars *vars);
 void ft_converter_str(va_list ap, t_vars *vars);
 void ft_converter_p(va_list ap, t_vars *vars);
 void	ft_converter_int(va_list ap, t_vars *vars);
+void ft_converter_uint(va_list ap, t_vars *vars);
+void ft_converter_hex(va_list ap, t_vars *vars);
 
 #endif

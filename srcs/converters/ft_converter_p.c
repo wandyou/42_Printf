@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 01:35:54 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:35:07 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/15 13:54:55 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_converter_p(va_list ap, t_vars *vars)
     vars->zero = 0;
   vars->conversion_len = ft_strlen(str);
   str = ft_num_precision(str, vars);
-  vars->conversion_len = ft_strlen(str) + 2;
+  vars->conversion_len = ft_strlen(str) + 4;
   if (vars->tmp_var == 0 && vars->precision && vars->precision_width == 0)
   {
     free(str);
