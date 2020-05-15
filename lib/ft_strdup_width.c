@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handlers.c                                      :+:      :+:    :+:   */
+/*   ft_strdup_width.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 21:09:55 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:40:59 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/15 01:21:23 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/15 01:23:31 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-void ft_handlers(char *parse, va_list ap, t_vars *vars)
+char	*ft_strdup_width(char *str, t_vars *vars)
 {
-  if (vars->conversion == '%' || vars->conversion == 'c')
-    ft_converter_c(ap, vars);
-  else if (vars->conversion == 's')
-    ft_converter_str(ap, vars);
-  else if (vars->conversion == 'p')
-    ft_converter_p(ap, vars);
-  else if (vars->conversion == 'd' || vars->conversion == 'i')
-    ft_converter_int(ap, vars);
+	char	*new_str;
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(str);
+	if (vars->precision && vars->precision_width < len)
+		len = vars->precision_width;
+	if (!(new_str = ft_calloc(len + 1, sizeof(char))))
+		return (NULL);
+	while (i < len)
+	{
+		new_str[i] = str[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
 }

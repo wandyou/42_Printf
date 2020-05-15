@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handlers.c                                      :+:      :+:    :+:   */
+/*   ft_itoa_hex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 21:09:55 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:40:59 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/15 01:47:27 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/15 02:02:40 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-void ft_handlers(char *parse, va_list ap, t_vars *vars)
+char	*ft_itoa_hex(uintmax_t var, char *hex)
 {
-  if (vars->conversion == '%' || vars->conversion == 'c')
-    ft_converter_c(ap, vars);
-  else if (vars->conversion == 's')
-    ft_converter_str(ap, vars);
-  else if (vars->conversion == 'p')
-    ft_converter_p(ap, vars);
-  else if (vars->conversion == 'd' || vars->conversion == 'i')
-    ft_converter_int(ap, vars);
+	char	*str;
+	int		var_len;
+	int		hex_len;
+
+  var_len = 1;
+  while (var >= 16)
+	{
+		var = var / 16;
+		var_len++;
+	}
+	if (!(str = ft_calloc((var_len + 1), sizeof(char))))
+		return (NULL);
+	str[var_len] = '\0';
+	while (var_len)
+	{
+		str[--var_len] = hex[var % 16];
+		var = var / 16;
+	}
+	return (str);
 }

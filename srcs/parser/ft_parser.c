@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:26:08 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/03 21:39:20 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/15 03:05:21 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,33 @@ void  ft_init_struct_parse(t_vars *vars)
   vars->minus = 0;
   vars->width = 0;
   vars->precision = 0;
+  vars->precision_parsing = 0;
+  vars->precision_width = 0;
+  vars->conversion = 0;
+  vars->conversion_len = 0;
+  vars->space_len = 0;
+  vars->tmp_var = 0;
+  vars->is_int = 0;
+}
+
+void ft_init_precision(t_vars *vars)
+{
+  vars->precision = 1;
+  vars->precision_parsing = 1;
   vars->precision_width = 0;
 }
 
 int is_conversion(char c)
 {
   if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
+    return 1;
+  else
+    return 0;
+}
+
+int ft_is_flag(char c)
+{
+  if (is_conversion(c) || c == '-' || c == ' ' || c == '.' || c == '+' || c == '*' || (c >= '0' && c <= '9'))
     return 1;
   else
     return 0;
@@ -57,7 +78,13 @@ int  ft_parser(char *parse, va_list ap, t_vars *vars)
       vars->minus = 1;
     }
     else if (c == '.')
-      vars->precision = 1;
+      ft_init_precision(vars);
+    else if (c == ' ')
+      vars->space = 1;
+    else if (c == '+')
+      vars->plus = 1;
+    
+    
     vars->parse_count++;
   }
   if (vars->width < 0)
@@ -70,6 +97,7 @@ int  ft_parser(char *parse, va_list ap, t_vars *vars)
     vars->precision = 0;
   if (vars->precision && vars->precision_width >= 0)
     vars->zero = 0;
+  vars->conversion = parse[vars->parse_count];
   
   ft_handlers(parse, ap, vars);
 

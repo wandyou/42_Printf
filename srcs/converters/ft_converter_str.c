@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handlers.c                                      :+:      :+:    :+:   */
+/*   ft_converter_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 21:09:55 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:40:59 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/14 23:56:36 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/15 01:24:20 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/ft_printf.h"
 
-void ft_handlers(char *parse, va_list ap, t_vars *vars)
+void ft_converter_str(va_list ap, t_vars *vars)
 {
-  if (vars->conversion == '%' || vars->conversion == 'c')
-    ft_converter_c(ap, vars);
-  else if (vars->conversion == 's')
-    ft_converter_str(ap, vars);
-  else if (vars->conversion == 'p')
-    ft_converter_p(ap, vars);
-  else if (vars->conversion == 'd' || vars->conversion == 'i')
-    ft_converter_int(ap, vars);
-}
+  char *str;
+  char *padding;
+
+  if (vars->precision && vars->precision_width < 0)
+    vars->precision_width = 0;
+  if (!(str = va_arg(ap, char *)))
+    str = ft_strdup_width("(null)", vars);
+  else
+    str = ft_strdup_width(str, vars);
+  vars->conversion_len = ft_strlen(str);
+  padding = ft_handle_padding(vars);
+  ft_handle_join(str, padding, vars);
+} 

@@ -6,7 +6,7 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:56:20 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/03 21:39:44 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/15 03:13:17 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdlib.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 9999
@@ -32,7 +33,15 @@ typedef struct s_vars
   int minus;
   int width;
   int precision;
+  int precision_parsing;
   int precision_width;
+  int conversion;
+  int conversion_len;
+  int space_len;
+  int tmp_var;
+  int is_int;
+  int space;
+  int plus;
 } t_vars;
 
 /* DEBUG */
@@ -47,13 +56,30 @@ void  ft_add_char_to_buff(t_vars *vars, char c);
 
 int  ft_parser(char *parse, va_list ap, t_vars *vars);
 void  ft_init_struct_parse(t_vars *vars);
-
-void handle_attributes_zero(t_vars *vars);
-
 int is_conversion(char c);
+int ft_is_flag(char c);
 
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *str);
 int		ft_simple_atoi(char *parse, int *parse_count);
+char	*ft_simple_itoa(intmax_t n);
+char *ft_c_to_str(char c);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
+char	*ft_strdup_width(char *str, t_vars *vars);
+char	*ft_itoa_hex(uintmax_t var, char *base);
+char	*ft_num_precision(char *str, t_vars *vars);
+char	*ft_strdup(const char *s1);
+size_t		ft_intlen(intmax_t nb);
+
+void ft_handlers(char *parse, va_list ap, t_vars *vars);
+char *ft_handle_padding(t_vars *vars);
+void ft_handle_join(char *str, char *space, t_vars *vars);
+void handle_attributes_zero(t_vars *vars);
+
+void ft_converter_c(va_list ap, t_vars *vars);
+void ft_converter_str(va_list ap, t_vars *vars);
+void ft_converter_p(va_list ap, t_vars *vars);
+void	ft_converter_int(va_list ap, t_vars *vars);
 
 #endif
