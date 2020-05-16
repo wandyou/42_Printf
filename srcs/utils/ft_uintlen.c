@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_uintlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 13:52:17 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/03/11 19:21:54 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/15 13:13:55 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:50:44 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	ft_uintlen(uintmax_t num)
 {
-	size_t	i;
-	char	*str;
+	size_t		len;
 
-	i = 0;
-	str = (char *)b;
-	while (i < len)
+	len = 1;
+	while (num >= 10)
 	{
-		str[i] = (unsigned char)c;
-		i++;
+		num = num / 10;
+		len++;
 	}
-	return (b);
+	return (len);
 }

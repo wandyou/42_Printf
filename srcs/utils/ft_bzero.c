@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uintlen.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/15 13:13:55 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 13:14:13 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/14 23:04:33 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:49:52 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-size_t	ft_uintlen(uintmax_t num)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t		len;
+	size_t	i;
+	char	*str;
+	int		c;
 
-	len = 1;
-	while (num >= 10)
+	i = 0;
+	str = (char *)s;
+	c = '\0';
+	if (n != 0)
 	{
-		num = num / 10;
-		len++;
+		while (i < n)
+		{
+			str[i] = (unsigned char)c;
+			i++;
+		}
 	}
-	return (len);
 }

@@ -6,11 +6,11 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 02:29:23 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:34:57 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/16 05:50:16 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 char	*ft_num_precision(char *str, t_vars *vars)
 {

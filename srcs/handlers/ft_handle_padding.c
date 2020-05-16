@@ -6,16 +6,15 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 21:11:43 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/14 23:03:29 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/16 05:09:41 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 char *ft_handle_padding(t_vars *vars)
 {
   char *str;
-  char c;
   int i;
 
   i = 0;
@@ -25,13 +24,12 @@ char *ft_handle_padding(t_vars *vars)
     return (NULL);
   if (vars->precision && vars->precision_width > vars->conversion_len)
     vars->zero = 0;
-  if (vars->zero)
-    c = '0';
-  else
-    c = ' ';
   while (i < vars->width - vars->conversion_len)
   {
-    str[i] = c;
+    if (vars->zero)
+      str[i] = '0';
+    else
+      str[i] = ' ';
     i++;
   }
   vars->space_len = i;

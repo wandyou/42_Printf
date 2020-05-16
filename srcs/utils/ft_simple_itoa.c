@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_c_to_str.c                                      :+:      :+:    :+:   */
+/*   ft_simple_itoa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/14 22:50:17 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/14 22:51:57 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/15 02:50:34 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:50:23 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-char *ft_c_to_str(char c)
+char	*ft_simple_itoa(intmax_t n)
 {
-  char *str;
+	char		*str;
+	int			num_len;
 
-  str = ft_calloc(2, sizeof(char));
-  str[0] = c;
-  str[1] = '\0';
-  return (str);
+	num_len = ft_intlen(n);
+	if (!(str = ft_calloc((num_len + 1), sizeof(char))))
+		return (NULL);
+	str[num_len] = '\0';
+	while (num_len)
+	{
+		if (n < 0)
+		{
+			str[--num_len] = -(n % 10) + 48;
+			n = n / 10;
+			n = -n;
+		}
+		else
+		{
+			str[--num_len] = n % 10 + 48;
+			n = n / 10;
+		}
+	}
+	return (str);
 }

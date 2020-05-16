@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_width.c                                  :+:      :+:    :+:   */
+/*   ft_c_to_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/15 01:21:23 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 01:23:31 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/14 22:50:17 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:49:58 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-char	*ft_strdup_width(char *str, t_vars *vars)
+char *ft_c_to_str(char c)
 {
-	char	*new_str;
-	int		i;
-	int		len;
+  char *str;
 
-	i = 0;
-	len = ft_strlen(str);
-	if (vars->precision && vars->precision_width < len)
-		len = vars->precision_width;
-	if (!(new_str = ft_calloc(len + 1, sizeof(char))))
-		return (NULL);
-	while (i < len)
-	{
-		new_str[i] = str[i];
-		i++;
-	}
-	new_str[i] = '\0';
-	return (new_str);
+  str = ft_calloc(2, sizeof(char));
+  str[0] = c;
+  str[1] = '\0';
+  return (str);
 }

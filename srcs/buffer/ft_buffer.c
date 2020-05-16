@@ -6,11 +6,11 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 07:34:37 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/14 23:12:39 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/15 17:22:34 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 void  ft_print_buff(t_vars *vars)
 {
@@ -27,18 +27,18 @@ void  ft_add_str_to_buff(t_vars *vars, char *str)
   i = 0;
   while (str[i])
   {
-    if (vars->buff_count == BUFFER_SIZE)
-      ft_print_buff(vars);
     vars->buff[vars->buff_count] = str[i];
     vars->buff_count++;
+    if (vars->buff_count == BUFFER_SIZE)
+      ft_print_buff(vars);
     i++;
   }
 }
 
 void  ft_add_char_to_buff(t_vars *vars, char c)
 {
-  if (vars->buff_count == BUFFER_SIZE)
-    ft_print_buff(vars);
   vars->buff[vars->buff_count] = c;
   vars->buff_count++;
+  if (vars->buff_count == BUFFER_SIZE)
+    ft_print_buff(vars);
 }

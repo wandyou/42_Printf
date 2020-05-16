@@ -6,11 +6,11 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 02:41:12 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 03:12:19 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/16 05:31:06 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 void	ft_converter_int(va_list ap, t_vars *vars)
 {

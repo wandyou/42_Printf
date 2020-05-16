@@ -6,13 +6,13 @@
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:26:08 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 15:24:47 by nlafarge         ###   ########.fr       */
+/*   Updated: 2020/05/16 05:47:11 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-void  ft_init_struct_parse(t_vars *vars)
+void  ft_init_flags(t_vars *vars)
 {
   vars->zero = 0;
   vars->minus = 0;
@@ -25,6 +25,10 @@ void  ft_init_struct_parse(t_vars *vars)
   vars->space_len = 0;
   vars->tmp_var = 0;
   vars->is_int = 0;
+  vars->plus = 0;
+  vars->space = 0;
+  vars->tmp_var = 0;
+  vars->unsigned_var = 0;
 }
 
 void ft_init_precision(t_vars *vars)
@@ -34,7 +38,7 @@ void ft_init_precision(t_vars *vars)
   vars->precision_width = 0;
 }
 
-int is_conversion(char c)
+size_t is_conversion(char c)
 {
   if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
     return 1;
@@ -42,7 +46,7 @@ int is_conversion(char c)
     return 0;
 }
 
-int ft_is_flag(char c)
+size_t ft_is_flag(char c)
 {
   if (is_conversion(c) || c == '-' || c == ' ' || c == '.' || c == '+' || c == '*' || (c >= '0' && c <= '9'))
     return 1;
@@ -50,41 +54,59 @@ int ft_is_flag(char c)
     return 0;
 }
 
-int  ft_parser(char *parse, va_list ap, t_vars *vars)
+void  ft_parser(char *parse, va_list ap, t_vars *vars)
 {
   char c;
+  char *tmp;
+  char *padding;
 
-  ft_init_struct_parse(vars);
+  ft_init_flags(vars);
   vars->parse_count++;
-  while (!is_conversion(parse[vars->parse_count]) && parse[vars->parse_count] != '\0')
+  while (!is_conversion(parse[vars->parse_count]))
   {
     c = parse[vars->parse_count];
     if (c == '*')
     {
-      if (vars->precision)
+      if (vars->precision_parsing)
         vars->precision_width = va_arg(ap, int);
       else
         vars->width = va_arg(ap, int);
     }
-    else if (c == '0' && !vars->minus && !vars->precision)
+    if (c == '0' && !vars->minus && !vars->precision_parsing)
       vars->zero = 1;
-    else if (c > '0' && c <= '9' && !vars->precision)
+    if (c > '0' && c <= '9' && !vars->precision_parsing)
       vars->width = ft_simple_atoi(parse, &vars->parse_count);
-    else if (c >= '0' && c <= '9' && vars->precision)
+    if (c >= '0' && c <= '9' && vars->precision_parsing)
       vars->precision_width = ft_simple_atoi(parse, &vars->parse_count);
-    else if (c == '-')
+    vars->precision_parsing = 0;
+    if (c == '-')
     {
-      vars->zero = 0;
       vars->minus = 1;
+      vars->zero = 0;
     }
-    else if (c == '.')
+    if (c == '.')
       ft_init_precision(vars);
-    else if (c == ' ')
+    if (c == ' ')
       vars->space = 1;
-    else if (c == '+')
+    if (c == '+')
       vars->plus = 1;
-    
-    
+    if (parse[vars->parse_count + 1] == '\0')
+      return ;
+    if (!ft_is_flag(parse[vars->parse_count + 1]))
+    {
+      tmp = ft_c_to_str(parse[vars->parse_count + 1]);
+      vars->conversion_len = 1;
+      if(vars->minus)
+        ft_add_str_to_buff(vars, tmp);
+      padding = ft_handle_padding(vars);
+      ft_add_str_to_buff(vars, padding);
+      if (!vars->minus)
+        ft_add_str_to_buff(vars, tmp);
+      free(tmp);
+      free(padding);
+      vars->parse_count++;
+      return ;
+    }
     vars->parse_count++;
   }
   if (vars->width < 0)
@@ -98,10 +120,6 @@ int  ft_parser(char *parse, va_list ap, t_vars *vars)
   if (vars->precision && vars->precision_width >= 0)
     vars->zero = 0;
   vars->conversion = parse[vars->parse_count];
-  
+
   ft_handlers(ap, vars);
-
-  //ft_print_struct(vars);
-
-  return (1);
 }

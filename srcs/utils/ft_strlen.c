@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/15 02:51:58 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 03:13:13 by nlafarge         ###   ########.fr       */
+/*   Created: 2019/11/04 13:08:23 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:50:39 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-size_t		ft_intlen(intmax_t nb)
+size_t	ft_strlen(const char *str)
 {
-	size_t		len;
+	int len;
 
 	len = 0;
-	if (!nb)
-		len++;
-	while (nb)
+	while (str[len] != '\0')
 	{
-		nb = nb / 10;
 		len++;
 	}
 	return (len);

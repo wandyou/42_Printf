@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/15 02:32:38 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:33:11 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/15 02:51:58 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:50:07 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-char	*ft_strdup(const char *s1)
+size_t		ft_intlen(intmax_t nb)
 {
-	char	*s2;
-	int		len;
-	int		i;
+	size_t		len;
 
-	len = ft_strlen((char *)s1);
-	if (!(s2 = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	i = 0;
-	while (s1[i])
+	len = 0;
+	if (!nb)
+		len++;
+	while (nb)
 	{
-		s2[i] = s1[i];
-		i += 1;
+		nb = nb / 10;
+		len++;
 	}
-	s2[i] = '\0';
-	return (s2);
+	return (len);
 }

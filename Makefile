@@ -6,7 +6,7 @@
 #    By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 16:36:10 by nlafarge          #+#    #+#              #
-#    Updated: 2020/05/15 15:21:29 by nlafarge         ###   ########.fr        #
+#    Updated: 2020/05/16 05:48:51 by nlafarge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ HEADER			=	headers
 
 SOURCE			=	ft_printf.c
 
-PARSER			=	parser/ft_parser.c \
-							parser/ft_attributes.c
+PARSER			=	parser/ft_parser.c
 
 HANDLERS		= handlers/ft_handlers.c \
 							handlers/ft_handle_padding.c \
@@ -38,21 +37,20 @@ CONVERTERS 	= converters/ft_converter_c.c \
 							converters/ft_converter_uint.c \
 							converters/ft_converter_hex.c
 
-LIB					=	lib/ft_simple_atoi.c \
-							lib/ft_c_to_str.c \
-							lib/ft_strdup_width.c \
-							lib/ft_itoa_hex.c \
-							lib/ft_num_precision.c \
-							lib/ft_simple_itoa.c \
-							lib/ft_intlen.c \
-							lib/ft_simple_uitoa.c \
-							lib/ft_uintlen.c
+UTILS					=	utils/ft_simple_atoi.c \
+							utils/ft_c_to_str.c \
+							utils/ft_strdup_width.c \
+							utils/ft_itoa_hex.c \
+							utils/ft_num_precision.c \
+							utils/ft_simple_itoa.c \
+							utils/ft_intlen.c \
+							utils/ft_simple_uitoa.c \
+							utils/ft_uintlen.c
 
 BUFFER			= buffer/ft_buffer.c
 
-FILES				= ${SOURCE} ${PARSER} ${BUFFER} ${HANDLERS} ${CONVERTERS}
-SOURCES			= $(addprefix ${SOURCE_DIR}/, ${FILES}) ${LIB}
-
+FILES				= ${SOURCE} ${PARSER} ${BUFFER} ${HANDLERS} ${CONVERTERS} ${UTILS}
+SOURCES			= $(addprefix ${SOURCE_DIR}/, ${FILES})
 OBJS = ${SOURCES:.c=.o}
 
 LIBFT 			= libft

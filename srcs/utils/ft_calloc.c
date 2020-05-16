@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_simple_itoa.c                                   :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlafarge <nlafarge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/15 02:50:34 by nlafarge          #+#    #+#             */
-/*   Updated: 2020/05/15 02:50:57 by nlafarge         ###   ########.fr       */
+/*   Created: 2020/05/14 22:52:25 by nlafarge          #+#    #+#             */
+/*   Updated: 2020/05/16 05:50:04 by nlafarge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-char	*ft_simple_itoa(intmax_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char		*str;
-	int			num_len;
+	unsigned char	*ptr;
 
-	num_len = ft_intlen(n);
-	if (!(str = ft_calloc((num_len + 1), sizeof(char))))
+	if (!(ptr = (unsigned char *)malloc(size * count)))
 		return (NULL);
-	str[num_len] = '\0';
-	while (num_len)
-	{
-		if (n < 0)
-		{
-			str[--num_len] = -(n % 10) + 48;
-			n = n / 10;
-			n = -n;
-		}
-		else
-		{
-			str[--num_len] = n % 10 + 48;
-			n = n / 10;
-		}
-	}
-	return (str);
+	ft_bzero(ptr, count * size);
+	return ((void *)ptr);
 }
